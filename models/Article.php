@@ -52,4 +52,10 @@ class Article extends \yii\db\ActiveRecord
             'date' => 'Date',
         ];
     }
+
+    public function saveImage($filename)
+    {
+        $this->image = $filename;
+        return $this->save(false);
+    }
 }
