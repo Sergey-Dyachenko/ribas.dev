@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Article;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -92,5 +93,19 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+    public function actionView(){
+        $query = Article::find();
+        $articles =$query->orderBy('title')
+            ->all();
+//        echo '<pre>';
+//        var_dump($articles);
+//        echo '</pre>';
+//        die();
+        return $this->render('view',
+            [
+                'articles' => $articles
+            ]);
     }
 }
